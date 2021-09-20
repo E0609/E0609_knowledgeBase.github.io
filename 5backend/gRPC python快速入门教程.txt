@@ -1,0 +1,468 @@
+
+gRPC python快速入门教程
+
+本章主要介绍在python中grpc的基本用法。
+
+在开始之前先安装一些东西。
+
+前置知识点：
+
+protobuf语法
+grpc基本概念
+1.环境安装
+grpc支持Python 2.7 或者 Python 3.4 或者更高的版本。
+
+首先确认pip的版本大于9.0.1
+
+$ python -m pip install --upgrade pip
+如果因为某些原因无法直接升级pip, 可以选择在virtualenv中运行grpc例子。
+
+$ python -m pip install virtualenv
+$ virtualenv venv
+$ source venv/bin/activate
+$ python -m pip install --upgrade pip
+1.1. 安装gRPC
+$ python -m pip install grpcio
+在mac系统中可能会出现下面的错误：
+
+$ OSError: [Errno 1] Operation not permitted: '/tmp/pip-qwTLbI-uninstall/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/six-1.4.1-py2.7.egg-info'
+可以使用下面的命令解决问题：
+
+$ python -m pip install grpcio --ignore-installed
+1.2. 安装gRPC工具
+gRPC工具包括protocol buffer编译器（protoc）和 python代码生成插件，python代码生成插件通过.proto服务定义文件，生成python的grpc服务端和客户端代码。
+
+$ python -m pip install grpcio-tools
+2.下载例子代码
+我们直接从grpc的github地址，下载grpc代码，里面包含了python的例子。
+
+$ # 将grpc代码clone到本地
+$ git clone -b v1.23.0 https://github.com/grpc/grpc
+
+$ # 切换到python的helloworld例子目录。
+$ cd grpc/examples/python/helloworld
+3.运行grpc应用
+首先运行服务端
+
+$ python greeter_server.py
+打开另外一个命令窗口，运行客户端
+
+$ python greeter_client.py
+到目前为止，我们已经运行了服务端和客户端的例子。
+
+4.更新rpc服务
+现在我们添加一个新的rpc接口，看看python的服务端和客户端代码怎么修改。
+
+grpc的接口是通过protocol buffers定义的，通常都保存在.proto文件中。
+
+如果你打开，前面例子的服务端和客户端代码看，你会发现有一个SayHello的方法，这个方法接受HelloRequest参数，并返回HelloReply参数，下面看看对应的.proto文件，是如何定义rpc接口的。
+
+打开：examples/protos/helloworld.proto 协议文件。
+
+// 定义Greeter，你可以当成类
+service Greeter {
+  // 定义一个rpc方法SayHello，接受HelloRequest消息，返回HelloReply消息
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+// 定义请求参数，HelloRequest消息
+message HelloRequest {
+  string name = 1;
+}
+
+// 定义响应参数，HelloReply消息
+message HelloReply {
+  string message = 1;
+}
+现在我们添加一个新的rpc方法，现在.proto定义变成这样。
+
+// 定义Greeter，你可以当成类
+service Greeter {
+  // SayHello方法
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  // 定义一个SayHelloAgain方法，接受HelloRequest消息，返回HelloReply消息
+  rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
+}
+
+// 定义请求参数，HelloRequest消息
+message HelloRequest {
+  string name = 1;
+}
+
+// 定义响应参数，HelloReply消息
+message HelloReply {
+  string message = 1;
+}
+修改后记得保存.proto文件。
+
+5.生成grpc代码
+现在我们需要根据新定义的.proto文件，生成新的python代码（这里其实只是生成一个类库，相当于更新类库，我们的业务代码实现刚才定义的rpc方法即可）
+
+切换到examples/python/helloworld目录，运行命令：
+
+$ python -m grpc_tools.protoc -I../../protos --python_out=. --grpc_python_out=. ../../protos/helloworld.proto
+命令说明：
+
+-I proto协议文件目录
+--python_out和--grpc_python_out 生成python代码的目录
+命令最后面的参数是proto协议文件名
+命令执行后生成helloworld_pb2.py文件和helloworld_pb2_grpc.py文件。
+
+helloworld_pb2.py - 主要包含proto文件定义的消息类。
+helloworld_pb2_grpc.py - 包含服务端和客户端代码
+6.更新并运行应用程序
+现在我们已经根据proto文件，生成新的python类库，但是我们还没实现新定义的rpc方法，下面介绍服务端和客户端如果升级代码。
+
+6.1. 更新服务端代码
+在同样目录打开greeter_server.py文件，实现类似如下代码。
+
+class Greeter(helloworld_pb2_grpc.GreeterServicer):
+  # 实现SayHello方法
+  def SayHello(self, request, context):
+    return helloworld_pb2.HelloReply(message='Hello, %s!' % request.name)
+  # 实现SayHelloAgain方法
+  def SayHelloAgain(self, request, context):
+    return helloworld_pb2.HelloReply(message='Hello again, %s!' % request.name)
+...
+6.2. 更新客户端代码
+在同样的目录打开greeter_client.py文件，实现代码如下：
+
+def run():
+  # 配置grpc服务端地址
+  channel = grpc.insecure_channel('localhost:50051')
+  stub = helloworld_pb2_grpc.GreeterStub(channel)
+  # 请求服务端的SayHello方法
+  response = stub.SayHello(helloworld_pb2.HelloRequest(name='you'))
+  print("Greeter client received: " + response.message)
+  # 请求服务端的SayHelloAgain方法
+  response = stub.SayHelloAgain(helloworld_pb2.HelloRequest(name='you'))
+  print("Greeter client received: " + response.message)
+6.3. 运行代码
+在examples/python/helloworld目录下面，首先运行服务端：
+
+$ python greeter_server.py
+运行客户端
+
+$ python greeter_client.py
+❮ 上一页下一页 ❯
+Copyright © 2019-2020 梯子教程 tizi365.com All Rights Reserved. 备案号：琼ICP备18002382号-1
+Email: xiaoqin_9113@qq.com
+
+
+//
+tizi365.com
+一架梯子，一头程序猿，仰望星空！
+grpc node入门教程
+❮ 上一页下一页 ❯
+本章主要介绍在node.js中grpc的基本用法。
+
+前置知识点：
+
+protobuf语法
+grpc基本概念
+1.环境要求
+在开始之前先安装一些东西。
+
+node版本大于4.0.0
+大家可以直接到node官网下载最新的版本安装。
+
+2.下载例子代码
+我们直接从grpc的github地址下载演示代码。
+
+$ # 下载v1.24.0版本的代码，当然你可以下载其他版本
+$ git clone -b v1.24.0 https://github.com/grpc/grpc
+
+$ # 切换到node演示代码目录
+$ cd grpc/examples/node/dynamic_codegen
+
+$ # 安装下node的依赖包
+$ npm install
+3.运行grpc应用
+首先运行服务端
+
+$ node greeter_server.js
+另外打开一个新的命令窗口，运行客户端
+
+$ node greeter_client.js
+ok, 这个时候你就看到客户端请求服务端的输出结果，后面我们演示下怎么添加一个新的rpc方法。
+
+4.更新rpc服务
+grpc的接口是通过protocol buffers定义的，通常都保存在.proto文件中。
+
+如果你打开，前面例子的服务端和客户端代码看，你会发现有一个SayHello的方法，这个方法接受HelloRequest参数，并返回HelloReply参数，下面看看对应的.proto文件，是如何定义rpc接口的。
+
+打开：examples/protos/helloworld.proto 协议文件。
+
+// 定义Greeter，你可以当成类
+service Greeter {
+  // 定义一个rpc方法SayHello，接受HelloRequest消息，返回HelloReply消息
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+// 定义请求参数，HelloRequest消息
+message HelloRequest {
+  string name = 1;
+}
+
+// 定义响应参数，HelloReply消息
+message HelloReply {
+  string message = 1;
+}
+现在我们添加一个新的rpc方法，现在.proto定义变成这样。
+
+// 定义Greeter，你可以当成类
+service Greeter {
+  // SayHello方法
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  // 定义一个SayHelloAgain方法，接受HelloRequest消息，返回HelloReply消息
+  rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
+}
+
+// 定义请求参数，HelloRequest消息
+message HelloRequest {
+  string name = 1;
+}
+
+// 定义响应参数，HelloReply消息
+message HelloReply {
+  string message = 1;
+}
+5.生成grpc代码
+node.js支持动态编译proto协议文件，可以不用手动将.proto文件转换成javascript代码。
+
+6.更新并运行应用程序
+6.1. 更新服务端代码
+下面是完整的服务端代码，文件：greeter_server.js
+
+// 我们定义的.proto协议文件路径
+var PROTO_PATH = __dirname + '/../../protos/helloworld.proto';
+
+// 加载grpc包
+var grpc = require('grpc');
+var protoLoader = require('@grpc/proto-loader');
+// 下面是处理动态加载.proto协议文件
+var packageDefinition = protoLoader.loadSync(
+    PROTO_PATH,
+    {keepCase: true,
+     longs: String,
+     enums: String,
+     defaults: true,
+     oneofs: true
+    });
+var hello_proto = grpc.loadPackageDefinition(packageDefinition).helloworld;
+
+/**
+ * 实现 SayHello RPC 方法.
+ */
+function sayHello(call, callback) {
+  callback(null, {message: 'Hello ' + call.request.name});
+}
+
+/**
+ * 实现 SayHelloAgain RPC 方法.
+ */
+function sayHelloAgain(call, callback) {
+  callback(null, {message: 'Hello again, ' + call.request.name});
+}
+
+/**
+ * 启动 RPC server
+ */
+function main() {
+  var server = new grpc.Server();
+  // 注册我们实现的rpc方法
+  server.addService(hello_proto.Greeter.service,
+                         {sayHello: sayHello, sayHelloAgain: sayHelloAgain});
+  // 设置rpc服务端绑定的地址
+  server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
+  // 启动服务端
+  server.start();
+}
+
+main();
+6.2. 更新客户端代码
+完成客户端代码，文件：greeter_client.js
+
+// proto协议文件路径
+var PROTO_PATH = __dirname + '/../../protos/helloworld.proto';
+
+var grpc = require('grpc');
+
+// 下面是处理动态加载.proto协议文件
+var protoLoader = require('@grpc/proto-loader');
+var packageDefinition = protoLoader.loadSync(
+    PROTO_PATH,
+    {keepCase: true,
+     longs: String,
+     enums: String,
+     defaults: true,
+     oneofs: true
+    });
+var hello_proto = grpc.loadPackageDefinition(packageDefinition).helloworld;
+
+function main() {
+  // 设置rpc服务端连接地址
+  var client = new hello_proto.Greeter('localhost:50051',
+                                       grpc.credentials.createInsecure());
+  var user;
+  if (process.argv.length >= 3) {
+    user = process.argv[2];
+  } else {
+    user = 'world';
+  }
+  // 请求服务端的sayHello方法
+  client.sayHello({name: user}, function(err, response) {
+    console.log('Greeting:', response.message);
+  });
+ 
+  // 请求服务端的sayHelloAgain方法
+  client.sayHelloAgain({name: 'you'}, function(err, response) {
+    console.log('Greeting:', response.message);
+  });
+}
+
+main();
+重新运行服务端和客户端即可。
+
+❮ 上一页下一页 ❯
+
+
+tizi365.com
+一架梯子，一头程序猿，仰望星空！
+grpc java入门教程
+❮ 上一页
+本章主要介绍在java中grpc的基本用法。
+
+前置知识点：
+
+protobuf语法
+grpc基本概念
+1.环境要求
+JDK 7 或者更高的版本
+2.下载例子代码
+我们直接从grpc的github地址下载演示代码。
+
+$ # 下载v1.23.0版本的代码，你也可以直接下载最新的版本
+$ git clone -b v1.23.0 https://github.com/grpc/grpc-java
+
+$ # 切换到Java的演示代码目录
+$ cd grpc-java/examples
+3.运行grpc应用
+首先编译服务端和客户端代码
+
+$ ./gradlew installDist
+运行grpc服务端
+
+$ ./build/install/examples/bin/hello-world-server
+另外打开一个命令行创建，运行客户端
+
+$ ./build/install/examples/bin/hello-world-client
+ok, 这个时候你就看到客户端请求服务端的输出结果，后面我们演示下怎么添加一个新的rpc方法。
+
+4.更新rpc服务
+grpc的接口是通过protocol buffers定义的，通常都保存在.proto文件中。
+
+如果你打开，前面例子的服务端和客户端代码看，你会发现有一个SayHello的方法，这个方法接受HelloRequest参数，并返回HelloReply参数，下面看看对应的.proto文件，是如何定义rpc接口的。
+
+打开：src/main/proto/helloworld.proto 协议文件。
+
+// 定义Greeter，你可以当成类
+service Greeter {
+  // 定义一个rpc方法SayHello，接受HelloRequest消息，返回HelloReply消息
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+// 定义请求参数，HelloRequest消息
+message HelloRequest {
+  string name = 1;
+}
+
+// 定义响应参数，HelloReply消息
+message HelloReply {
+  string message = 1;
+}
+现在我们添加一个新的rpc方法，现在.proto定义变成这样。
+
+// 定义Greeter，你可以当成类
+service Greeter {
+  // SayHello方法
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  // 定义一个SayHelloAgain方法，接受HelloRequest消息，返回HelloReply消息
+  rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
+}
+
+// 定义请求参数，HelloRequest消息
+message HelloRequest {
+  string name = 1;
+}
+
+// 定义响应参数，HelloReply消息
+message HelloReply {
+  string message = 1;
+}
+5.生成grpc代码
+重新编译客户端和服务端代码。
+
+$ ./gradlew installDist
+这个时候会生成GreeterGrpc.java源码文件，包含了我们在.proto定义的服务和方法。
+
+6.更新并运行应用程序
+6.1. 更新服务端代码
+打开源码：src/main/java/io/grpc/examples/helloworld/HelloWorldServer.java，下面是关键代码。
+
+// 定义GreeterImpl类型，实现我们在.proto定义的服务
+private class GreeterImpl extends GreeterGrpc.GreeterImplBase {
+
+  // 实现sayHello方法
+  @Override
+  public void sayHello(HelloRequest req, StreamObserver<HelloReply> responseObserver) {
+    // 初始化HelloReply消息
+    HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + req.getName()).build();
+    // 返回消息
+    responseObserver.onNext(reply);
+    responseObserver.onCompleted();
+  }
+
+  // 实现sayHelloAgain方法
+  @Override
+  public void sayHelloAgain(HelloRequest req, StreamObserver<HelloReply> responseObserver) {
+    HelloReply reply = HelloReply.newBuilder().setMessage("Hello again " + req.getName()).build();
+    responseObserver.onNext(reply);
+    responseObserver.onCompleted();
+  }
+}
+...
+6.2. 更新客户端代码
+打开src/main/java/io/grpc/examples/helloworld/HelloWorldClient.java文件，调用rpc方法的关键代码如下：
+
+public void greet(String name) {
+  logger.info("Will try to greet " + name + " ...");
+  // 创建请求消息
+  HelloRequest request = HelloRequest.newBuilder().setName(name).build();
+  // 定义响应消息
+  HelloReply response;
+  try {
+    // 调用服务端的sayHello方法
+    response = blockingStub.sayHello(request);
+  } catch (StatusRuntimeException e) {
+    logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
+    return;
+  }
+  logger.info("Greeting: " + response.getMessage());
+  try {
+    // 调用服务端的sayHelloAgain方法
+    response = blockingStub.sayHelloAgain(request);
+  } catch (StatusRuntimeException e) {
+    logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
+    return;
+  }
+  logger.info("Greeting: " + response.getMessage());
+}
+完整的代码，请参考源码文件的内容。
+
+需要重新编译在运行程序即可。
+
+
+
+
+
