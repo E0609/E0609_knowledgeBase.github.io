@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0059)https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+  
+    <title>iot — AWS CLI 1.22.68 Command Reference</title>
+  <link rel="stylesheet" type="text/css" href="./iot — AWS CLI 1.22.68 Command Reference_files/bootstrap.min.css">
+  <script type="text/javascript" src="./iot — AWS CLI 1.22.68 Command Reference_files/jquery-1.9.1.min.js.download"></script>
+  <script src="./iot — AWS CLI 1.22.68 Command Reference_files/sdk-priv.js.download" async="true"></script>
+    
+    <link rel="stylesheet" href="./iot — AWS CLI 1.22.68 Command Reference_files/guzzle.css" type="text/css">
+    <link rel="stylesheet" href="./iot — AWS CLI 1.22.68 Command Reference_files/pygments.css" type="text/css">
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.22.68',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="./iot — AWS CLI 1.22.68 Command Reference_files/jquery.js.download"></script>
+    <script type="text/javascript" src="./iot — AWS CLI 1.22.68 Command Reference_files/underscore.js.download"></script>
+    <script type="text/javascript" src="./iot — AWS CLI 1.22.68 Command Reference_files/doctools.js.download"></script>
+    <link rel="top" title="AWS CLI 1.22.68 Command Reference" href="https://docs.aws.amazon.com/zh_cn/cli/latest/index.html">
+    <link rel="up" title="aws" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/index.html">
+    <link rel="next" title="accept-certificate-transfer" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/accept-certificate-transfer.html">
+    <link rel="prev" title="update-organization-configuration" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/inspector2/update-organization-configuration.html">
+  <script type="text/javascript" src="./iot — AWS CLI 1.22.68 Command Reference_files/awsdocs-boot.js.download"></script><style>#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-btn{flex:0 1 100%;padding:5px 20px;box-sizing:border-box;border:0;background-color:#eaeded;color:#000;font-weight:700;border-radius:2px;cursor:pointer;user-select:none;display:inline-block;text-align:center;font-size:14px;position:relative}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-btn:hover{background-color:#d5dbdb}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-btn:focus{outline:none;text-decoration:none}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-btn:focus::before{content:" ";display:block;position:absolute;left:-2px;top:-2px;width:calc(100% + 4px);height:calc(100% + 4px);border-radius:2px;box-shadow:0 0 0 2px #00a1c9}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-btn.awsccc-u-btn-primary{background-color:#ec7211}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-btn.awsccc-u-btn-primary span{color:#fff}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-btn.awsccc-u-btn-primary:hover{background-color:#eb5f07}</style><style>#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c{position:fixed;bottom:0;left:0;width:100%;z-index:10000}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-content{position:relative;background:linear-gradient(180deg, rgba(21, 28, 39, 0.98) 0%, rgba(38, 51, 77, 0.98) 100%);box-shadow:0px -2px 5px 0px rgba(0,0,0,.5);padding:30px 30px 15px;border-top:solid 1px #306da3}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-title{font-weight:700;padding:0 0 5px;margin:0;color:#fff}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-actions{flex-shrink:1;display:flex;align-items:flex-start;flex-wrap:wrap}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-buttons{flex:1;display:flex;justify-content:center;flex-wrap:wrap}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-buttons .awsccc-u-btn{margin-bottom:15px;padding-left:40px;padding-right:40px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-text{flex:1 1 100%;margin:0 0 15px;color:#eaeded}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c.awsc-bot-above-f-imp{z-index:999}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c.dark-mode-enabled #awsccc-cb-content{background:none;background-color:#2a2e33}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c.dark-mode-enabled .awsccc-u-btn-secondary{background-color:#2a2e33}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c.dark-mode-enabled .awsccc-u-btn-secondary span{color:#d5dbdb}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c.dark-mode-enabled .awsccc-u-btn-secondary:hover{background-color:#21252c}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c.dark-mode-enabled .awsccc-u-btn-primary span{color:#16191f}@media screen and (min-width: 700px){#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-content{padding-bottom:40px;padding-left:50px;padding-right:50px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-buttons .awsccc-u-btn{flex:0 1 auto;margin:10px 5px 0}}@media screen and (min-width: 1020px){#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-content{padding-bottom:15px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-actions{flex-wrap:nowrap}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-text{flex:1;padding-right:40px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-buttons{flex-wrap:nowrap;flex:0 1 auto}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-buttons .awsccc-u-btn{flex:0 0 auto;margin-top:0}}@media screen and (min-width: 1020px){#awsccc-sb-ux-c #awsccc-sb-a.awsccc-Rtl #awsccc-cb-text{padding-left:40px;padding-right:0}}div[data-id=awsccc-cb]{display:none}</style><style>#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-i-container{padding-bottom:15px;border-bottom:1px solid #eee;margin-bottom:10px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-i-container span,#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-i-container a{font-size:15px}</style><style>#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-cb-hidden{text-indent:-9999px;position:absolute}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-cb-label{position:relative;display:inline-block;line-height:0}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-cb-text{line-height:16px;vertical-align:top}#awsccc-sb-ux-c #awsccc-sb-a .awscc-u-cb-checkbox,#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-cb-input{height:14px;width:14px;z-index:1;pointer-events:none;fill:none}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-cb-outer{margin-right:8px;height:14px;width:14px;display:inline-block}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-cb-input{padding:0;margin:0;position:absolute;z-index:0;opacity:0}#awsccc-sb-ux-c #awsccc-sb-a .awscc-u-cb-checkbox-rect{background-color:#fff;fill:#fff;stroke:#aab7b8;stroke-width:1}#awsccc-sb-ux-c #awsccc-sb-a .awscc-u-cb-checkbox-poly-line{opacity:1;stroke:#fff;stroke-width:2;fill:none}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-cb-checkbox-active .awscc-u-cb-checkbox-rect{fill:#0073bb;stroke:#0073bb}#awsccc-sb-ux-c #awsccc-sb-a .awscc-u-cb-checkbox-container{position:relative;line-height:0}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-cb-focused:before{content:" ";display:block;position:absolute;left:-2px;top:-2px;width:calc(100% + 4px);height:calc(100% + 4px);border-radius:2px;box-shadow:0 0 0 2px #00a1c9}#awsccc-sb-ux-c #awsccc-sb-a.awsccc-Rtl .awsccc-cs-s-cb-outer{margin-left:8px;margin-right:0}</style><style>#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container{position:relative;margin-bottom:20px}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container .awsccc-cs-s-title{font-size:18px;line-height:20px;flex:0 0 100%;margin:0 0 5px;z-index:10;display:inline-block;line-height:normal;font-weight:400}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container .awsccc-cs-s-text{flex:0 0 80%;border-top:1px solid #eee;padding-top:5px}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container .awsccc-cs-s-action{display:flex;justify-content:flex-end;flex:1;position:absolute;top:3px;right:20px}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container .awsccc-cs-s-paragraph{margin-top:0;font-size:14px;line-height:20px;padding:0;margin-bottom:15px}@media screen and (min-width: 700px){#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container{border-bottom:1px solid #eee;display:flex;flex-wrap:wrap}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container .awsccc-cs-s-title{padding-bottom:0}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container .awsccc-cs-s-text{border-top:0}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container .awsccc-cs-s-action{justify-content:center;position:relative;top:auto;right:auto;padding-top:20px}}</style><style>#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-l-container span,#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-l-container a{font-size:12px;line-height:15px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-l-container span:focus,#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-l-container a:focus{outline-style:solid;outline-color:#00a1c9;outline-width:2px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-l-container p>span{color:#687078}</style><style>#awsccc-sb-ux-c #awsccc-sb-a.awsccc-Rtl #awsccc-cs-f-c{text-align:left}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-f-c{text-decoration:none;padding:10px 20px;text-align:right;border-top:1px solid #eaeded;display:flex;justify-content:center;flex-wrap:wrap}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-f-c .awsccc-u-btn{margin-left:10px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-f-c .awsccc-u-btn.awsccc-u-btn-secondary{background-color:#fff;border-color:#fff;color:#545b64;margin-bottom:6px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-f-c .awsccc-u-btn.awsccc-u-btn-secondary:hover{color:#000;background-color:#fafafa}@media screen and (min-width: 700px){#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-f-c{display:block}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-f-c .awsccc-u-btn.awsccc-u-btn-secondary{margin-bottom:0}}</style><style>#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-container{display:flex;align-items:center;justify-items:center;bottom:0;left:0;right:0;top:0;position:fixed;z-index:10002;outline:0;overflow:hidden}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-container-inner{max-width:820px;box-sizing:border-box;outline:none;margin:10px auto;width:calc(100vw - 20px)}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-content{background-color:#fff;border-radius:0;box-sizing:border-box;margin-bottom:0;word-wrap:break-word;box-shadow:0 1px 1px 0 rgba(0,28,36,.3),1px 1px 1px 0 rgba(0,28,36,.15),-1px 1px 1px 0 rgba(0,28,36,.15)}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-header{background-color:#fafafa;padding:19px 20px;border-bottom:1px solid #eaeded}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-title{min-width:0;word-break:break-word;color:#16191f;flex:auto}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-title h2{font-size:18px;font-weight:700;margin:0}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-modalBody{overflow-y:auto;max-height:calc(100vh - 200px);padding:19px 20px}@media screen and (max-width: 480px){#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-modalBody{max-height:calc(100vh - 275px)}}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-modalOverlay{background-color:rgba(242,243,243,.9);position:fixed;z-index:10001;right:0;top:0;bottom:0;left:0}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled{background-color:#2a2e33}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalOverlay{background-color:rgba(22,25,31,.8)}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-header{background-color:#21252c;border-bottom:1px solid #414750}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-title h2{color:#eaeded}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody{background-color:#2a2e33}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody #awsccc-cs-i-container{border-bottom:1px solid #414750}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody #awsccc-cs-i-container span{color:#eaeded}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container{border-bottom:1px solid #414750}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container h3{color:#eaeded}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container p{color:#eaeded}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container span{color:#eaeded}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container rect{fill:#1a2029}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container .awsccc-cs-s-text{border-top:0}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container .awscc-u-cb-checkbox-poly-line{display:none}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container .awsccc-u-cb-checkbox-active .awscc-u-cb-checkbox-poly-line{display:inline-block}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container .awsccc-u-cb-checkbox-active .awscc-u-cb-checkbox-rect{fill:#00a1c9;stroke:#00a1c9}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-f-c{border-top:1px solid #414750;background-color:#2a2e33}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-f-c .awsccc-u-btn-secondary{background-color:#2a2e33}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-f-c .awsccc-u-btn-secondary span{color:#d5dbdb}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-f-c .awsccc-u-btn-secondary:hover{background-color:#21252c}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-f-c .awsccc-u-btn-primary span{color:#16191f}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-l-container span{color:#eaeded}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-l-container span a{display:inline-block}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-l-container span a span{color:#44b9d6}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-l-container path{color:#44b9d6}div[data-id=awsccc-cs]{display:none}</style><style>#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-i-open-c{display:inline-block;vertical-align:middle;line-height:1em;padding-left:.3em}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-i-open-c svg{stroke-width:2px;pointer-events:none;fill:none;padding-bottom:1px;height:10px;width:10px}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-i-open-c svg .awsccc-stroke-linecap-square{stroke-linecap:square}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-i-open-c svg .awsccc-stroke-linejoin-round{stroke-linejoin:round}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-i-open-c svg path{stroke:currentColor}</style><style>#awsccc-sb-ux-c #awsccc-sb-a *{font-family:"Amazon Ember","HelveticaNeue","Helvetica Neue","Amazon Ember",Roboto,"Roboto-Regular","Amazon Ember",Helvetica,Arial,sans-serif;font-size:14px;line-height:21px;color:#16191f;text-align:left;background:none;border:0}#awsccc-sb-ux-c #awsccc-sb-a.awsccc-Rtl *{direction:rtl;text-align:right}#awsccc-sb-ux-c #awsccc-sb-a.awsccc-Rtl .awsccc-cs-s-container .awsccc-cs-s-action{right:auto;left:20px}@media screen and (min-width: 1020px){#awsccc-sb-ux-c #awsccc-sb-a.awsccc-Rtl #awsccc-cb-c #awsccc-cb-title{padding-right:40px}}#awsccc-sb-ux-c #awsccc-sb-a a,#awsccc-sb-ux-c #awsccc-sb-a a>span,#awsccc-sb-ux-c #awsccc-sb-a a svg path{color:#0073bb;text-decoration:none}#awsccc-sb-ux-c #awsccc-sb-a a:hover,#awsccc-sb-ux-c #awsccc-sb-a a>span:hover,#awsccc-sb-ux-c #awsccc-sb-a a svg path:hover{color:#0073bb;text-decoration:underline}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-tab-helper{outline:0;text-decoration:none}.awsccc-cs-modal-open{overflow:hidden;-webkit-box-sizing:border-box;box-sizing:border-box}</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="guide-name" content="API Reference">
+  <meta name="service-name" content="AWS CLI">
+  <link rel="stylesheet" type="text/css" href="./iot — AWS CLI 1.22.68 Command Reference_files/bootstrap-responsive.min.css">
+  
+   
+
+  <style>#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-btn{flex:0 1 100%;padding:5px 20px;box-sizing:border-box;border:0;background-color:#eaeded;color:#000;font-weight:700;border-radius:2px;cursor:pointer;user-select:none;display:inline-block;text-align:center;font-size:14px;position:relative}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-btn:hover{background-color:#d5dbdb}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-btn:focus{outline:none;text-decoration:none}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-btn:focus::before{content:" ";display:block;position:absolute;left:-2px;top:-2px;width:calc(100% + 4px);height:calc(100% + 4px);border-radius:2px;box-shadow:0 0 0 2px #00a1c9}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-btn.awsccc-u-btn-primary{background-color:#ec7211}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-btn.awsccc-u-btn-primary span{color:#fff}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-btn.awsccc-u-btn-primary:hover{background-color:#eb5f07}</style><style>#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c{position:fixed;bottom:0;left:0;width:100%;z-index:10000}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-content{position:relative;background:linear-gradient(180deg, rgba(21, 28, 39, 0.98) 0%, rgba(38, 51, 77, 0.98) 100%);box-shadow:0px -2px 5px 0px rgba(0,0,0,.5);padding:30px 30px 15px;border-top:solid 1px #306da3}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-title{font-weight:700;padding:0 0 5px;margin:0;color:#fff}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-actions{flex-shrink:1;display:flex;align-items:flex-start;flex-wrap:wrap}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-buttons{flex:1;display:flex;justify-content:center;flex-wrap:wrap}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-buttons .awsccc-u-btn{margin-bottom:15px;padding-left:40px;padding-right:40px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-text{flex:1 1 100%;margin:0 0 15px;color:#eaeded}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c.awsc-bot-above-f-imp{z-index:999}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c.dark-mode-enabled #awsccc-cb-content{background:none;background-color:#2a2e33}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c.dark-mode-enabled .awsccc-u-btn-secondary{background-color:#2a2e33}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c.dark-mode-enabled .awsccc-u-btn-secondary span{color:#d5dbdb}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c.dark-mode-enabled .awsccc-u-btn-secondary:hover{background-color:#21252c}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c.dark-mode-enabled .awsccc-u-btn-primary span{color:#16191f}@media screen and (min-width: 700px){#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-content{padding-bottom:40px;padding-left:50px;padding-right:50px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-buttons .awsccc-u-btn{flex:0 1 auto;margin:10px 5px 0}}@media screen and (min-width: 1020px){#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-content{padding-bottom:15px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-actions{flex-wrap:nowrap}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-text{flex:1;padding-right:40px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-buttons{flex-wrap:nowrap;flex:0 1 auto}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cb-c #awsccc-cb-buttons .awsccc-u-btn{flex:0 0 auto;margin-top:0}}@media screen and (min-width: 1020px){#awsccc-sb-ux-c #awsccc-sb-a.awsccc-Rtl #awsccc-cb-text{padding-left:40px;padding-right:0}}div[data-id=awsccc-cb]{display:none}</style><style>#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-i-container{padding-bottom:15px;border-bottom:1px solid #eee;margin-bottom:10px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-i-container span,#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-i-container a{font-size:15px}</style><style>#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-cb-hidden{text-indent:-9999px;position:absolute}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-cb-label{position:relative;display:inline-block;line-height:0}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-cb-text{line-height:16px;vertical-align:top}#awsccc-sb-ux-c #awsccc-sb-a .awscc-u-cb-checkbox,#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-cb-input{height:14px;width:14px;z-index:1;pointer-events:none;fill:none}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-cb-outer{margin-right:8px;height:14px;width:14px;display:inline-block}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-cb-input{padding:0;margin:0;position:absolute;z-index:0;opacity:0}#awsccc-sb-ux-c #awsccc-sb-a .awscc-u-cb-checkbox-rect{background-color:#fff;fill:#fff;stroke:#aab7b8;stroke-width:1}#awsccc-sb-ux-c #awsccc-sb-a .awscc-u-cb-checkbox-poly-line{opacity:1;stroke:#fff;stroke-width:2;fill:none}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-cb-checkbox-active .awscc-u-cb-checkbox-rect{fill:#0073bb;stroke:#0073bb}#awsccc-sb-ux-c #awsccc-sb-a .awscc-u-cb-checkbox-container{position:relative;line-height:0}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-cb-focused:before{content:" ";display:block;position:absolute;left:-2px;top:-2px;width:calc(100% + 4px);height:calc(100% + 4px);border-radius:2px;box-shadow:0 0 0 2px #00a1c9}#awsccc-sb-ux-c #awsccc-sb-a.awsccc-Rtl .awsccc-cs-s-cb-outer{margin-left:8px;margin-right:0}</style><style>#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container{position:relative;margin-bottom:20px}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container .awsccc-cs-s-title{font-size:18px;line-height:20px;flex:0 0 100%;margin:0 0 5px;z-index:10;display:inline-block;line-height:normal;font-weight:400}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container .awsccc-cs-s-text{flex:0 0 80%;border-top:1px solid #eee;padding-top:5px}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container .awsccc-cs-s-action{display:flex;justify-content:flex-end;flex:1;position:absolute;top:3px;right:20px}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container .awsccc-cs-s-paragraph{margin-top:0;font-size:14px;line-height:20px;padding:0;margin-bottom:15px}@media screen and (min-width: 700px){#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container{border-bottom:1px solid #eee;display:flex;flex-wrap:wrap}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container .awsccc-cs-s-title{padding-bottom:0}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container .awsccc-cs-s-text{border-top:0}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-cs-s-container .awsccc-cs-s-action{justify-content:center;position:relative;top:auto;right:auto;padding-top:20px}}</style><style>#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-l-container span,#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-l-container a{font-size:12px;line-height:15px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-l-container span:focus,#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-l-container a:focus{outline-style:solid;outline-color:#00a1c9;outline-width:2px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-l-container p>span{color:#687078}</style><style>#awsccc-sb-ux-c #awsccc-sb-a.awsccc-Rtl #awsccc-cs-f-c{text-align:left}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-f-c{text-decoration:none;padding:10px 20px;text-align:right;border-top:1px solid #eaeded;display:flex;justify-content:center;flex-wrap:wrap}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-f-c .awsccc-u-btn{margin-left:10px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-f-c .awsccc-u-btn.awsccc-u-btn-secondary{background-color:#fff;border-color:#fff;color:#545b64;margin-bottom:6px}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-f-c .awsccc-u-btn.awsccc-u-btn-secondary:hover{color:#000;background-color:#fafafa}@media screen and (min-width: 700px){#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-f-c{display:block}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-f-c .awsccc-u-btn.awsccc-u-btn-secondary{margin-bottom:0}}</style><style>#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-container{display:flex;align-items:center;justify-items:center;bottom:0;left:0;right:0;top:0;position:fixed;z-index:10002;outline:0;overflow:hidden}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-container-inner{max-width:820px;box-sizing:border-box;outline:none;margin:10px auto;width:calc(100vw - 20px)}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-content{background-color:#fff;border-radius:0;box-sizing:border-box;margin-bottom:0;word-wrap:break-word;box-shadow:0 1px 1px 0 rgba(0,28,36,.3),1px 1px 1px 0 rgba(0,28,36,.15),-1px 1px 1px 0 rgba(0,28,36,.15)}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-header{background-color:#fafafa;padding:19px 20px;border-bottom:1px solid #eaeded}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-title{min-width:0;word-break:break-word;color:#16191f;flex:auto}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-title h2{font-size:18px;font-weight:700;margin:0}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-modalBody{overflow-y:auto;max-height:calc(100vh - 200px);padding:19px 20px}@media screen and (max-width: 480px){#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-modalBody{max-height:calc(100vh - 275px)}}#awsccc-sb-ux-c #awsccc-sb-a #awsccc-cs-modalOverlay{background-color:rgba(242,243,243,.9);position:fixed;z-index:10001;right:0;top:0;bottom:0;left:0}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled{background-color:#2a2e33}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalOverlay{background-color:rgba(22,25,31,.8)}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-header{background-color:#21252c;border-bottom:1px solid #414750}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-title h2{color:#eaeded}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody{background-color:#2a2e33}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody #awsccc-cs-i-container{border-bottom:1px solid #414750}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody #awsccc-cs-i-container span{color:#eaeded}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container{border-bottom:1px solid #414750}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container h3{color:#eaeded}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container p{color:#eaeded}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container span{color:#eaeded}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container rect{fill:#1a2029}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container .awsccc-cs-s-text{border-top:0}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container .awscc-u-cb-checkbox-poly-line{display:none}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container .awsccc-u-cb-checkbox-active .awscc-u-cb-checkbox-poly-line{display:inline-block}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-modalBody .awsccc-cs-s-container .awsccc-u-cb-checkbox-active .awscc-u-cb-checkbox-rect{fill:#00a1c9;stroke:#00a1c9}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-f-c{border-top:1px solid #414750;background-color:#2a2e33}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-f-c .awsccc-u-btn-secondary{background-color:#2a2e33}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-f-c .awsccc-u-btn-secondary span{color:#d5dbdb}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-f-c .awsccc-u-btn-secondary:hover{background-color:#21252c}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-f-c .awsccc-u-btn-primary span{color:#16191f}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-l-container span{color:#eaeded}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-l-container span a{display:inline-block}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-l-container span a span{color:#44b9d6}#awsccc-sb-ux-c #awsccc-sb-a .dark-mode-enabled #awsccc-cs-l-container path{color:#44b9d6}div[data-id=awsccc-cs]{display:none}</style><style>#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-i-open-c{display:inline-block;vertical-align:middle;line-height:1em;padding-left:.3em}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-i-open-c svg{stroke-width:2px;pointer-events:none;fill:none;padding-bottom:1px;height:10px;width:10px}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-i-open-c svg .awsccc-stroke-linecap-square{stroke-linecap:square}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-i-open-c svg .awsccc-stroke-linejoin-round{stroke-linejoin:round}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-u-i-open-c svg path{stroke:currentColor}</style><style>#awsccc-sb-ux-c #awsccc-sb-a *{font-family:"Amazon Ember","HelveticaNeue","Helvetica Neue","Amazon Ember",Roboto,"Roboto-Regular","Amazon Ember",Helvetica,Arial,sans-serif;font-size:14px;line-height:21px;color:#16191f;text-align:left;background:none;border:0}#awsccc-sb-ux-c #awsccc-sb-a.awsccc-Rtl *{direction:rtl;text-align:right}#awsccc-sb-ux-c #awsccc-sb-a.awsccc-Rtl .awsccc-cs-s-container .awsccc-cs-s-action{right:auto;left:20px}@media screen and (min-width: 1020px){#awsccc-sb-ux-c #awsccc-sb-a.awsccc-Rtl #awsccc-cb-c #awsccc-cb-title{padding-right:40px}}#awsccc-sb-ux-c #awsccc-sb-a a,#awsccc-sb-ux-c #awsccc-sb-a a>span,#awsccc-sb-ux-c #awsccc-sb-a a svg path{color:#0073bb;text-decoration:none}#awsccc-sb-ux-c #awsccc-sb-a a:hover,#awsccc-sb-ux-c #awsccc-sb-a a>span:hover,#awsccc-sb-ux-c #awsccc-sb-a a svg path:hover{color:#0073bb;text-decoration:underline}#awsccc-sb-ux-c #awsccc-sb-a .awsccc-tab-helper{outline:0;text-decoration:none}.awsccc-cs-modal-open{overflow:hidden;-webkit-box-sizing:border-box;box-sizing:border-box}</style></head>
+  <body><div id="awsccc-sb-ux-c"><div id="awsccc-sb-a" class=""><div data-id="awsccc-cb" style="display: none;"><div id="awsccc-cb-c" data-id="awsccc-cb-tabstart" class="awsccc-tab-helper" tabindex="-1"><div id="awsccc-cb-content"><h2 id="awsccc-cb-title">选择您的 Cookie 首选项</h2><div id="awsccc-cb-actions"><p id="awsccc-cb-text">我们使用 Cookie 和类似工具来改善您的用户体验，提供我们的服务，推送针对性广告，以及做出改进。经批准的第三方也可使用这些工具来帮助我们投放广告并提供某些站点功能。</p><div id="awsccc-cb-buttons"><button tabindex="0" data-id="awsccc-cb-btn-customize" type="submit" aria-label="自定义 Cookie 首选项" class="awsccc-u-btn awsccc-u-btn-secondary"><span>自定义</span></button><button tabindex="0" data-id="awsccc-cb-btn-accept" type="submit" aria-label="接受所有 Cookie" class="awsccc-u-btn awsccc-u-btn-primary"><span>接受全部</span></button></div></div></div></div></div><div data-id="awsccc-cs" tabindex="0" class="" style="display: none;"><div id="awsccc-cs-container" role="dialog" aria-modal="true" data-awsccc-modal-toggle="true" data-id="awsccc-cs-tabtrap" tabindex="-1"><div id="awsccc-cs-container-inner"><div id="awsccc-cs-content"><div id="awsccc-cs-header"><div id="awsccc-cs-title"><h2>自定义 Cookie 首选项</h2></div></div><div id="awsccc-cs-modalBody"><div id="awsccc-cs-i-container"><span>Cookie 及类似工具(统称为“Cookie”)的用途包括以下几种。</span></div><div data-category="essential" class="awsccc-cs-s-container"><h3 class="awsccc-cs-s-title">关键</h3><div class="awsccc-cs-s-text"><p class="awsccc-cs-s-paragraph">关键 Cookie 对我们提供网站和服务来说绝对必要，不可将其禁用。关键 Cookie 通常是根据您在网站上的操作(例如，设置您的隐私首选项，登录或填写表格)来设置的。</p></div><div class="awsccc-cs-s-action"></div></div><div data-category="performance" class="awsccc-cs-s-container"><h3 class="awsccc-cs-s-title">性能</h3><div class="awsccc-cs-s-text"><p class="awsccc-cs-s-paragraph">性能 Cookie 可为我们提供有关客户使用网站情况的匿名统计信息，以便我们改善用户的网站体验及网站性能。经批准的第三方可为我们执行分析，但不可将数据用于其自身目的。</p></div><div class="awsccc-cs-s-action"><div><div class="awsccc-cs-s-cb-outer"><div class="awscc-u-cb-checkbox-container" data-id="awsccc-u-cb-performance-container"><label data-id="awsccc-u-cb-performance-label" class="awsccc-u-cb-label awsccc-u-cb-checkbox-active"><input id="awsccc-u-cb-performance" class="awsccc-u-cb-input" type="checkbox" aria-checked="true" checked=""><span class="awsccc-cs-s-cb-hidden">允许性能类别</span><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false" class="awscc-u-cb-checkbox"><rect class="awscc-u-cb-checkbox-rect" x="0.5" y="0.5" rx="1.5" ry="1.5" width="13" height="13"></rect><polyline class="awscc-u-cb-checkbox-poly-line " points="2.5,7 6,10 11,3"></polyline></svg></label></div></div><span class="awsccc-u-cb-text">允许</span></div></div></div><div data-category="functional" class="awsccc-cs-s-container"><h3 class="awsccc-cs-s-title">功能</h3><div class="awsccc-cs-s-text"><p class="awsccc-cs-s-paragraph">功能 Cookie 有助于我们提供有用的网站功能，记住您的首选项及显示有针对性的内容。经批准的第三方可对功能 Cookie 进行设置以提供某些网站功能。如果您不允许功能 Cookie，则某些或所有这些服务可能无法正常提供。</p></div><div class="awsccc-cs-s-action"><div><div class="awsccc-cs-s-cb-outer"><div class="awscc-u-cb-checkbox-container" data-id="awsccc-u-cb-functional-container"><label data-id="awsccc-u-cb-functional-label" class="awsccc-u-cb-label awsccc-u-cb-checkbox-active"><input id="awsccc-u-cb-functional" class="awsccc-u-cb-input" type="checkbox" aria-checked="true" checked=""><span class="awsccc-cs-s-cb-hidden">允许功能类别</span><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false" class="awscc-u-cb-checkbox"><rect class="awscc-u-cb-checkbox-rect" x="0.5" y="0.5" rx="1.5" ry="1.5" width="13" height="13"></rect><polyline class="awscc-u-cb-checkbox-poly-line " points="2.5,7 6,10 11,3"></polyline></svg></label></div></div><span class="awsccc-u-cb-text">允许</span></div></div></div><div data-category="advertising" class="awsccc-cs-s-container"><h3 class="awsccc-cs-s-title">广告</h3><div class="awsccc-cs-s-text"><p class="awsccc-cs-s-paragraph">广告 Cookie 可由我们或我们的广告合作伙伴通过我们的网站进行设置，有助于我们推送有针对性的营销内容。如果您不允许广告 Cookie，则您所接收到的广告的针对性将会有所降低。</p></div><div class="awsccc-cs-s-action"><div><div class="awsccc-cs-s-cb-outer"><div class="awscc-u-cb-checkbox-container" data-id="awsccc-u-cb-advertising-container"><label data-id="awsccc-u-cb-advertising-label" class="awsccc-u-cb-label awsccc-u-cb-checkbox-active"><input id="awsccc-u-cb-advertising" class="awsccc-u-cb-input" type="checkbox" aria-checked="true" checked=""><span class="awsccc-cs-s-cb-hidden">允许广告类别</span><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false" class="awscc-u-cb-checkbox"><rect class="awscc-u-cb-checkbox-rect" x="0.5" y="0.5" rx="1.5" ry="1.5" width="13" height="13"></rect><polyline class="awscc-u-cb-checkbox-poly-line " points="2.5,7 6,10 11,3"></polyline></svg></label></div></div><span class="awsccc-u-cb-text">允许</span></div></div></div><div id="awsccc-cs-l-container"><p><span>阻止某些类型的 Cookie 的话，可能会影响到您的网站体验。您可以随时单击此网站页脚中的 Cookie 首选项来对您的 Cookie 首选项进行更改。要了解有关我们及经批准的第三方如何在网站上使用 Cookie 的更多信息，请阅读&nbsp;<a data-id="awsccc-cs-f-notice" href="https://aws.amazon.com/legal/cookies/" target="_blank" rel="noopener noreferrer" title="在新窗口中打开"><span>AWS Cookie 声明。<div class="awsccc-u-i-open-c"><svg class="awsccc-u-i-open" viewBox="0 0 16 16" focusable="false" aria-hidden="true"><path class="awsccc-stroke-linecap-square" d="M10 2h4v4"></path><path d="M6 10l8-8"></path><path class="awsccc-stroke-linejoin-round" d="M14 9.048V14H2V2h5"></path></svg></div></span></a></span></p></div></div><div id="awsccc-cs-f-c"><button tabindex="0" data-id="awsccc-cs-btn-cancel" type="submit" aria-label="取消自定义 Cookie 首选项" class="awsccc-u-btn awsccc-u-btn-secondary"><span>取消</span></button><button tabindex="0" data-id="awsccc-cs-btn-save" type="submit" aria-label="保存自定义的 Cookie 首选项" class="awsccc-u-btn awsccc-u-btn-primary"><span>保存首选项</span></button></div></div></div></div><div id="awsccc-cs-modalOverlay"></div><div data-id="awsccc-cs-tabtrap" tabindex="-1" class="awsccc-tab-helper"></div></div></div></div>
+  <div class="navbar navbar-fixed-top ">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="https://docs.aws.amazon.com/zh_cn/cli/latest/index.html">AWS CLI Command Reference</a>
+        <ul class="nav">
+<li><a href="https://docs.aws.amazon.com/zh_cn/cli/latest/index.html">Home</a></li>
+<li><a href="http://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a></li>
+<li><a href="https://forums.aws.amazon.com/forum.jspa?forumID=150">Forum</a></li>
+<li><a href="https://github.com/aws/aws-cli">GitHub</a></li>
+        </ul>
+        <div class="pull-right" id="github-stars">
+          <iframe src="./iot — AWS CLI 1.22.68 Command Reference_files/github-btn.html" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--REGION_DISCLAIMER_DO_NOT_REMOVE-->
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="https://docs.aws.amazon.com/zh_cn/cli/latest/genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/accept-certificate-transfer.html" title="accept-certificate-transfer" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/inspector2/update-organization-configuration.html" title="update-organization-configuration" accesskey="P">previous</a> |</li>
+        <li><a href="https://docs.aws.amazon.com/zh_cn/cli/latest/index.html">AWS CLI 1.22.68 Command Reference</a> »</li>
+          <li><a href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/index.html" accesskey="U">aws</a> »</li> 
+      </ul>
+    </div>
+    <div class="container">
+        
+    <div class="top-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/inspector2/update-organization-configuration.html" title="previous chapter (use the left arrow)">← update-organization-configuration</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/accept-certificate-transfer.html" title="next chapter (use the right arrow)">accept-certificate-transfer →</a></li>
+      </ul>
+    </div>
+  
+        <div class="document clearer">
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><p class="logo left-bar-other">
+  <a href="https://docs.aws.amazon.com/zh_cn/cli/latest/index.html">
+    <img class="logo" src="./iot — AWS CLI 1.22.68 Command Reference_files/logo.png" alt="Logo" height="63">
+  </a>
+</p>
+  <h3><a href="https://docs.aws.amazon.com/zh_cn/cli/latest/index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/#">iot</a><ul>
+<li><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/#description">Description</a></li>
+<li><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/#available-commands">Available Commands</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="">
+    <h3>Quick search</h3>
+    <form class="form-search margin-top-1em" action="https://docs.aws.amazon.com/zh_cn/cli/latest/search.html" method="get">
+        <input type="text" name="q" style="width: 105px" class="input-small search-query">
+        <button type="submit" class="btn btn-small">Search</button>
+        <input type="hidden" name="check_keywords" value="yes">
+        <input type="hidden" name="area" value="default">
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><div class="left-bar-other">
+  <h3>Feedback</h3>
+  <p class="feedback">Did you find this page useful? Do you have a suggestion to improve the documentation? <a href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AWS%20Command%20Line%20Interface&amp;hidden_guide_name=Reference&amp;topic_url=https%3A%2F%2Fdocs.aws.amazon.com%2Fcli%2Flatest%2Freference/iot/index.html">Give us feedback</a>.
+    <br>
+    If you would like to suggest an improvement or fix for the AWS CLI, check out our <a href="https://github.com/aws/aws-cli/blob/develop/CONTRIBUTING.md">contributing guide</a> on GitHub.</p>
+</div><div class="left-bar-other">
+  <h3>User Guide</h3>
+  <p>First time using the AWS CLI? See the
+  <a href="http://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a> for
+  help getting started.</p>
+</div>
+        </div>
+      </div>
+            <div class="body">
+                <div class="well">
+                    <p>
+                        <strong>Note:</strong>
+                        You are viewing the documentation for an older major version of the AWS CLI (version 1).
+                    </p>
+                    <p>
+                        AWS CLI version 2, the latest major version of AWS CLI, is now stable and recommended for general use.
+                        
+                            To view this page for the AWS CLI version 2, click
+                            <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/iot/index.html">here</a>.
+                        
+                        For more information see the AWS CLI version 2
+                        <a href="https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html">installation instructions</a>
+                        and
+                        <a href="https://docs.aws.amazon.com/cli/latest/userguide/cliv2-migration.html">migration guide</a>.
+                    </p>
+                </div>
+              
+  <p>[ <a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/index.html#cli-aws"><em>aws</em></a> ]</p>
+<div class="section" id="iot">
+<span id="cli-aws-iot"></span><h1>iot<a class="headerlink" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/#iot" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/#description" title="Permalink to this headline">¶</a></h2>
+<p>IoT provides secure, bi-directional communication between Internet-connected devices (such as sensors, actuators, embedded devices, or smart appliances) and the Amazon Web Services cloud. You can discover your custom IoT-Data endpoint to communicate with, configure rules for data processing and integration with other services, organize resources associated with each device (Registry), configure logging, and create and manage policies and credentials to authenticate devices.</p>
+<p>The service endpoints that expose this API are listed in <a class="reference external" href="https://docs.aws.amazon.com/general/latest/gr/iot-core.html">Amazon Web Services IoT Core Endpoints and Quotas</a> . You must use the endpoint for the region that has the resources you want to access.</p>
+<p>The service name used by <a class="reference external" href="https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">Amazon Web Services Signature Version 4</a> to sign the request is: <em>execute-api</em> .</p>
+<p>For more information about how IoT works, see the <a class="reference external" href="https://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html">Developer Guide</a> .</p>
+<p>For information about how to use the credentials provider for IoT, see <a class="reference external" href="https://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html">Authorizing Direct Calls to Amazon Web Services Services</a> .</p>
+</div>
+<div class="section" id="available-commands">
+<h2>Available Commands<a class="headerlink" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/#available-commands" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/accept-certificate-transfer.html">accept-certificate-transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/add-thing-to-billing-group.html">add-thing-to-billing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/add-thing-to-thing-group.html">add-thing-to-thing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/associate-targets-with-job.html">associate-targets-with-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/attach-policy.html">attach-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/attach-security-profile.html">attach-security-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/attach-thing-principal.html">attach-thing-principal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/cancel-audit-mitigation-actions-task.html">cancel-audit-mitigation-actions-task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/cancel-audit-task.html">cancel-audit-task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/cancel-certificate-transfer.html">cancel-certificate-transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/cancel-detect-mitigation-actions-task.html">cancel-detect-mitigation-actions-task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/cancel-job.html">cancel-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/cancel-job-execution.html">cancel-job-execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/clear-default-authorizer.html">clear-default-authorizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/confirm-topic-rule-destination.html">confirm-topic-rule-destination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-audit-suppression.html">create-audit-suppression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-authorizer.html">create-authorizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-billing-group.html">create-billing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-certificate-from-csr.html">create-certificate-from-csr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-custom-metric.html">create-custom-metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-dimension.html">create-dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-domain-configuration.html">create-domain-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-dynamic-thing-group.html">create-dynamic-thing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-fleet-metric.html">create-fleet-metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-job.html">create-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-job-template.html">create-job-template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-keys-and-certificate.html">create-keys-and-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-mitigation-action.html">create-mitigation-action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-ota-update.html">create-ota-update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-policy.html">create-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-policy-version.html">create-policy-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-provisioning-claim.html">create-provisioning-claim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-provisioning-template.html">create-provisioning-template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-provisioning-template-version.html">create-provisioning-template-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-role-alias.html">create-role-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-scheduled-audit.html">create-scheduled-audit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-security-profile.html">create-security-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-stream.html">create-stream</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-thing.html">create-thing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-thing-group.html">create-thing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-thing-type.html">create-thing-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-topic-rule.html">create-topic-rule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/create-topic-rule-destination.html">create-topic-rule-destination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-account-audit-configuration.html">delete-account-audit-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-audit-suppression.html">delete-audit-suppression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-authorizer.html">delete-authorizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-billing-group.html">delete-billing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-ca-certificate.html">delete-ca-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-certificate.html">delete-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-custom-metric.html">delete-custom-metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-dimension.html">delete-dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-domain-configuration.html">delete-domain-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-dynamic-thing-group.html">delete-dynamic-thing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-fleet-metric.html">delete-fleet-metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-job.html">delete-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-job-execution.html">delete-job-execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-job-template.html">delete-job-template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-mitigation-action.html">delete-mitigation-action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-ota-update.html">delete-ota-update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-policy.html">delete-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-policy-version.html">delete-policy-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-provisioning-template.html">delete-provisioning-template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-provisioning-template-version.html">delete-provisioning-template-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-registration-code.html">delete-registration-code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-role-alias.html">delete-role-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-scheduled-audit.html">delete-scheduled-audit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-security-profile.html">delete-security-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-stream.html">delete-stream</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-thing.html">delete-thing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-thing-group.html">delete-thing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-thing-type.html">delete-thing-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-topic-rule.html">delete-topic-rule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-topic-rule-destination.html">delete-topic-rule-destination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/delete-v2-logging-level.html">delete-v2-logging-level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/deprecate-thing-type.html">deprecate-thing-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-account-audit-configuration.html">describe-account-audit-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-audit-finding.html">describe-audit-finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-audit-mitigation-actions-task.html">describe-audit-mitigation-actions-task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-audit-suppression.html">describe-audit-suppression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-audit-task.html">describe-audit-task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-authorizer.html">describe-authorizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-billing-group.html">describe-billing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-ca-certificate.html">describe-ca-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-certificate.html">describe-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-custom-metric.html">describe-custom-metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-default-authorizer.html">describe-default-authorizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-detect-mitigation-actions-task.html">describe-detect-mitigation-actions-task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-dimension.html">describe-dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-domain-configuration.html">describe-domain-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-endpoint.html">describe-endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-event-configurations.html">describe-event-configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-fleet-metric.html">describe-fleet-metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-index.html">describe-index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-job.html">describe-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-job-execution.html">describe-job-execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-job-template.html">describe-job-template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-managed-job-template.html">describe-managed-job-template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-mitigation-action.html">describe-mitigation-action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-provisioning-template.html">describe-provisioning-template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-provisioning-template-version.html">describe-provisioning-template-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-role-alias.html">describe-role-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-scheduled-audit.html">describe-scheduled-audit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-security-profile.html">describe-security-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-stream.html">describe-stream</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-thing.html">describe-thing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-thing-group.html">describe-thing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-thing-registration-task.html">describe-thing-registration-task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/describe-thing-type.html">describe-thing-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/detach-policy.html">detach-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/detach-security-profile.html">detach-security-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/detach-thing-principal.html">detach-thing-principal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/disable-topic-rule.html">disable-topic-rule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/enable-topic-rule.html">enable-topic-rule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-behavior-model-training-summaries.html">get-behavior-model-training-summaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-buckets-aggregation.html">get-buckets-aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-cardinality.html">get-cardinality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-effective-policies.html">get-effective-policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-indexing-configuration.html">get-indexing-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-job-document.html">get-job-document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-logging-options.html">get-logging-options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-ota-update.html">get-ota-update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-percentiles.html">get-percentiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-policy.html">get-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-policy-version.html">get-policy-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-registration-code.html">get-registration-code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-statistics.html">get-statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-topic-rule.html">get-topic-rule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-topic-rule-destination.html">get-topic-rule-destination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/get-v2-logging-options.html">get-v2-logging-options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-active-violations.html">list-active-violations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-attached-policies.html">list-attached-policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-audit-findings.html">list-audit-findings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-audit-mitigation-actions-executions.html">list-audit-mitigation-actions-executions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-audit-mitigation-actions-tasks.html">list-audit-mitigation-actions-tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-audit-suppressions.html">list-audit-suppressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-audit-tasks.html">list-audit-tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-authorizers.html">list-authorizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-billing-groups.html">list-billing-groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-ca-certificates.html">list-ca-certificates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-certificates.html">list-certificates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-certificates-by-ca.html">list-certificates-by-ca</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-custom-metrics.html">list-custom-metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-detect-mitigation-actions-executions.html">list-detect-mitigation-actions-executions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-detect-mitigation-actions-tasks.html">list-detect-mitigation-actions-tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-dimensions.html">list-dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-domain-configurations.html">list-domain-configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-fleet-metrics.html">list-fleet-metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-indices.html">list-indices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-job-executions-for-job.html">list-job-executions-for-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-job-executions-for-thing.html">list-job-executions-for-thing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-job-templates.html">list-job-templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-jobs.html">list-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-managed-job-templates.html">list-managed-job-templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-mitigation-actions.html">list-mitigation-actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-ota-updates.html">list-ota-updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-outgoing-certificates.html">list-outgoing-certificates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-policies.html">list-policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-policy-versions.html">list-policy-versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-principal-things.html">list-principal-things</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-provisioning-template-versions.html">list-provisioning-template-versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-provisioning-templates.html">list-provisioning-templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-role-aliases.html">list-role-aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-scheduled-audits.html">list-scheduled-audits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-security-profiles.html">list-security-profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-security-profiles-for-target.html">list-security-profiles-for-target</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-streams.html">list-streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-tags-for-resource.html">list-tags-for-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-targets-for-policy.html">list-targets-for-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-targets-for-security-profile.html">list-targets-for-security-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-thing-groups.html">list-thing-groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-thing-groups-for-thing.html">list-thing-groups-for-thing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-thing-principals.html">list-thing-principals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-thing-registration-task-reports.html">list-thing-registration-task-reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-thing-registration-tasks.html">list-thing-registration-tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-thing-types.html">list-thing-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-things.html">list-things</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-things-in-billing-group.html">list-things-in-billing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-things-in-thing-group.html">list-things-in-thing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-topic-rule-destinations.html">list-topic-rule-destinations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-topic-rules.html">list-topic-rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-v2-logging-levels.html">list-v2-logging-levels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/list-violation-events.html">list-violation-events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/put-verification-state-on-violation.html">put-verification-state-on-violation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/register-ca-certificate.html">register-ca-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/register-certificate.html">register-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/register-certificate-without-ca.html">register-certificate-without-ca</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/register-thing.html">register-thing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/reject-certificate-transfer.html">reject-certificate-transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/remove-thing-from-billing-group.html">remove-thing-from-billing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/remove-thing-from-thing-group.html">remove-thing-from-thing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/replace-topic-rule.html">replace-topic-rule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/search-index.html">search-index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/set-default-authorizer.html">set-default-authorizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/set-default-policy-version.html">set-default-policy-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/set-logging-options.html">set-logging-options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/set-v2-logging-level.html">set-v2-logging-level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/set-v2-logging-options.html">set-v2-logging-options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/start-audit-mitigation-actions-task.html">start-audit-mitigation-actions-task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/start-detect-mitigation-actions-task.html">start-detect-mitigation-actions-task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/start-on-demand-audit-task.html">start-on-demand-audit-task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/start-thing-registration-task.html">start-thing-registration-task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/stop-thing-registration-task.html">stop-thing-registration-task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/tag-resource.html">tag-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/test-authorization.html">test-authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/test-invoke-authorizer.html">test-invoke-authorizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/transfer-certificate.html">transfer-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/untag-resource.html">untag-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-account-audit-configuration.html">update-account-audit-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-audit-suppression.html">update-audit-suppression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-authorizer.html">update-authorizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-billing-group.html">update-billing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-ca-certificate.html">update-ca-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-certificate.html">update-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-custom-metric.html">update-custom-metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-dimension.html">update-dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-domain-configuration.html">update-domain-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-dynamic-thing-group.html">update-dynamic-thing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-event-configurations.html">update-event-configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-fleet-metric.html">update-fleet-metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-indexing-configuration.html">update-indexing-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-job.html">update-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-mitigation-action.html">update-mitigation-action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-provisioning-template.html">update-provisioning-template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-role-alias.html">update-role-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-scheduled-audit.html">update-scheduled-audit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-security-profile.html">update-security-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-stream.html">update-stream</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-thing.html">update-thing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-thing-group.html">update-thing-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-thing-groups-for-thing.html">update-thing-groups-for-thing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/update-topic-rule-destination.html">update-topic-rule-destination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/validate-security-profile-behaviors.html">validate-security-profile-behaviors</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+            </div>
+          <div class="clearfix"></div>
+        </div>
+        
+    <div class="footer-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/inspector2/update-organization-configuration.html" title="previous chapter (use the left arrow)">← update-organization-configuration</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/accept-certificate-transfer.html" title="next chapter (use the right arrow)">accept-certificate-transfer →</a></li>
+      </ul>
+    </div>
+  
+
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="https://docs.aws.amazon.com/zh_cn/cli/latest/genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/accept-certificate-transfer.html" title="accept-certificate-transfer">next</a> |</li>
+        <li class="right">
+          <a href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/inspector2/update-organization-configuration.html" title="update-organization-configuration">previous</a> |</li>
+        <li><a href="https://docs.aws.amazon.com/zh_cn/cli/latest/index.html">AWS CLI 1.22.68 Command Reference</a> »</li>
+          <li><a href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/index.html">aws</a> »</li> 
+      </ul>
+    </div>
+  <div id="awsdocs-legal-zone-copyright" class="footer container">
+      <a href="https://aws.amazon.com/privacy" target="_blank">隐私</a> |
+        <a href="https://aws.amazon.com/terms/" target="_blank">网站条款</a> |
+        <a id="awsdocs-cookie-preferences-link" href="https://docs.aws.amazon.com/zh_cn/cli/latest/reference/iot/#">Cookie 首选项</a> |
+          <span class="copyright">
+      © 2022, Amazon Web Services, Inc. 或其附属公司。保留所有权利。</span>
+        </div>
+
+
+
+  
+    
+  
+  
+<script type="text/javascript" src="./iot — AWS CLI 1.22.68 Command Reference_files/awshome_s_code.js.download"></script></body></html>
